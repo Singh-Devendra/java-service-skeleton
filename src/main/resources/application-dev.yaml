@@ -1,0 +1,6 @@
+# ===============================
+# = App Settings
+# ===============================
+app:
+  message: Welcome to TMS (Training Management System) by ${app.organization}. You are currently using ${app.name} in DEVELOPMENT environment.
+  env: dev

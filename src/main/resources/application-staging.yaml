@@ -1,0 +1,12 @@
+# ===============================
+# = App Settings
+# ===============================
+app:
+  message: Welcome to TMS (Training Management System) by ${app.organization}. You are currently using ${app.name} in STAGING environment.
+  env: staging
+
+  spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/tms_staging?useSSL=false
+    username: root
+    password: root

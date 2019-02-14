@@ -1,0 +1,17 @@
+# ===============================
+# = App Settings
+# ===============================
+app:
+  message: Welcome to TMS (Training Management System) by ${app.organization}. You are currently using ${app.name} in PRODUCTION environment.
+  env: prod
+  
+logging:
+  level:
+    org.springframework: INFO
+
+    
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/tms_prod?useSSL=false
+    username: root
+    password: root

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOG_PATH" value="${HOME}/" />
+	<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/tms_web.log}"/>
+
+	<!-- Spring Boot’s default configuration for Logback -->
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+	
+	<!-- define a logger for a single class/package -->
+	<!-- <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>tms${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+			<fileNamePattern>${LOG_PATH}/archived/tms_log_%d{dd-MM-yyyy}.log</fileNamePattern>
+			<maxFileSize>${LOG_FILE_MAX_SIZE:-1KB}</maxFileSize>
+			<maxHistory>${LOG_FILE_MAX_HISTORY:-2}</maxHistory>
+			<totalSizeCap>5KB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+	<logger name="com.metacube.tms.controller.StudentController" additivity="false" level="info">
+		<appender-ref ref="SAVE-TO-FILE" />
+	</logger> -->
+	
+</configuration>

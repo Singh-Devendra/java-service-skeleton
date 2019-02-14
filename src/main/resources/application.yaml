@@ -1,0 +1,94 @@
+# ===============================
+# = App Settings
+# ===============================
+app:
+  name: TMS
+  message: Welcome to TMS (Training Management System) by Metacube
+  organization: Metacube
+  version: BETA_0.0.1
+  sso:
+    scheme: http
+    host: newac.herokuapp.com
+    path: /sessions/logout
+    allowed-methods: GET,POST,PUT,PATCH,DELETE,OPTIONS
+    allowed-origins: http://localhost:4200  
+authorization:
+  scheme: https
+  host: ec2-34-220-78-195.us-west-2.compute.amazonaws.com:9443
+  path: /api/identity/entitlement/decision/pdp
+
+ui:
+    base_url: http://localhost:4200
+      
+### Default server port #########
+server:
+  port: 8080
+
+
+
+# ===============================
+# = Security
+# ===============================
+#security.user.name=admin
+#security.user.password=admin
+#management.security.role=SUPERUSER
+security:
+  oauth2:
+    sso:
+     login-path: http://localhost:4200/
+    client:
+      client-id: 222
+      client-secret: 0XL5PKZPR42enw8Fu6HVC9cah4Ma
+      access-token-uri: https://employees-account.herokuapp.com/sessions/get_access_token
+      user-authorization-uri: https://employees-account.herokuapp.com/sessions/new
+      clientAuthenticationScheme: form
+      scope: openid,profile,email
+      pre-established-redirect-uri: http://localhost:8080/login
+      registered-redirect-uri: http://localhost:8080/
+      use-current-uri: false
+#      token-name: Basic
+    resource:
+      userInfoUri: http://employees-account.herokuapp.com/sessions/user_info
+#      token-type: Bearer
+
+# ===============================
+# = DATA SOURCE, JPA / HIBERNATE
+# ===============================
+
+# Set here configurations for the database connection
+# Connection url for the database "tms"
+# Use spring.jpa.properties.* for Hibernate native properties (the prefix is
+# stripped before adding them to the entity manager).
+# Hibernate ddl auto (create, create-drop, update): with "update" the database
+# schema will be automatically updated accordingly to java entities found in the project
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/lad?ssl=false
+    username: root
+    password: root
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    show-sql: true
+#    hibernate:
+#      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+  hibernate:
+    ddl-auto: update
+    naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    
+logging:
+ level:
+   org.springframework: DEBUG
+   org.springframework.web.servlet: DEBUG
+   org.springframework.security: DEBUG
+   org.hibernate.SQL: DEBUG
+   org.hibernate.type.descriptor.sql.BasicBinder: TRACE
